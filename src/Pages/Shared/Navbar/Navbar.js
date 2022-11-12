@@ -1,4 +1,6 @@
 import React from 'react';
+import { TbDental } from "react-icons/tb";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -23,9 +25,12 @@ const Navbar = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <Link className="btn btn-ghost normal-case text-xl gap-1 text-slate-800 transition-colors duration-300 transform hover:text-primary">
+                    Dentist
+                    <TbDental className=''></TbDental>
+                    Portal</Link>
             </div>
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li><a>Item 1</a></li>
                     <li tabIndex={0}>
@@ -40,9 +45,6 @@ const Navbar = () => {
                     </li>
                     <li><a>Item 3</a></li>
                 </ul>
-            </div>
-            <div className="navbar-end">
-                <a className="btn">Get started</a>
             </div>
         </div>
     );
