@@ -1,8 +1,17 @@
 import React from 'react';
 import { TbDental } from "react-icons/tb";
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
  
 const Navbar = () => {
+    const navMenu = <>
+    <NavLink className={({isActive}) => isActive ? "" : "" } >Home</NavLink>
+    <NavLink className={({isActive}) => isActive ? "" : "" } >About</NavLink>
+    <NavLink className={({isActive}) => isActive ? "" : "" } >Appointment</NavLink>
+    <NavLink className={({isActive}) => isActive ? "" : "" } >Reviews</NavLink>
+    <NavLink className={({isActive}) => isActive ? "" : "" } >Contact Us</NavLink>
+    <NavLink className={({isActive}) => isActive ? "" : "" } >Login</NavLink>
+    </>
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
