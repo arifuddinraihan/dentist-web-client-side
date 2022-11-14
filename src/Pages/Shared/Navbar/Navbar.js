@@ -1,7 +1,7 @@
 import React from 'react';
 import { TbDental } from "react-icons/tb";
 import { Link } from 'react-router-dom';
-
+ 
 const Navbar = () => {
     return (
         <div className="navbar bg-base-100">
