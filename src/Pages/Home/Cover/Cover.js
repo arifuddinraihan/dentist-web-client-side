@@ -1,14 +1,21 @@
 import React from 'react';
+import PrimaryButton from '../../../components/Buttons/PrimaryButton';
+import chair from '../../../assets/images/chair.png'
+import backgroundChair from '../../../assets/images/bg.png'
+
 
 const Cover = () => {
     return (
-        <div className="hero bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <img src="https://placeimg.com/260/400/arch" className="max-w-sm rounded-lg shadow-2xl" />
+        <div className="hero">
+            <div className="hero-content flex-col lg:flex-row-reverse"
+                style={{ backgroundImage: `url(${backgroundChair})` }}
+            >
+                <img src={chair} alt="chair" className="w-full md:w-1/2 rounded-lg shadow-2xl mb-14 md:mb-0" />
                 <div>
-                    <h1 className="text-5xl font-bold">Box Office News!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <h1 className="text-5xl font-bold">Your New Smile Starts Here</h1>
+                    <p className="py-6 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
+                    <PrimaryButton classes="btn border-none shadow-lg">
+                        Get Started</PrimaryButton>
                 </div>
             </div>
         </div>

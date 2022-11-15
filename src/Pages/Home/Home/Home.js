@@ -8,17 +8,19 @@ import Services from '../Services/Services';
 import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
-    return (
-        <div>
-          <Cover></Cover>
-          <InfoCards></InfoCards>
-          <Services></Services>
-          <GetAService></GetAService>
-          <Appointment></Appointment>
-          <Testimonials></Testimonials>
-          <ContactForm></ContactForm>
-        </div>
-    );
+  return (
+    <div>
+      <div>
+        <Cover></Cover>
+        <InfoCards></InfoCards>
+      </div>
+      <Services></Services>
+      <GetAService></GetAService>
+      <Appointment></Appointment>
+      <Testimonials></Testimonials>
+      <ContactForm></ContactForm>
+    </div>
+  );
 };
 
 export default Home;
