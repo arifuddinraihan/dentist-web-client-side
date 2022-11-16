@@ -10,7 +10,8 @@ const AppointmentOptions = ({ option }) => {
                 <p>{slots.length > 0 ? slots[1] : "All slots booked for the day."}</p>
                 <p>{slots.length} {slots.length > 1 ? "SPACES" : "SPACE"} AVAILABLE</p>
                 <div className="card-actions justify-center mt-4">
-                    <PrimaryButton classes="text-md font-bold py-4 px-8 rounded-xl">Book Now</PrimaryButton>
+                    <label htmlFor="booking-modal" 
+                    className="btn text-md font-bold py-4 px-8 rounded-xl border-0 hover:text-gray-100 bg-gradient-to-r from-primary to-secondary text-white">Book Now</label>
                 </div>
             </div>
         </div>
