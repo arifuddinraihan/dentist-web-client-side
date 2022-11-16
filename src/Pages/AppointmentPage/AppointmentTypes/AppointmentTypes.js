@@ -5,6 +5,7 @@ import BookModal from '../BookModal/BookModal';
 
 const AppointmentTypes = ({ selectDate }) => {
     const [optionArray, setOptionArray] = useState([])
+    const [treatment, setTreatment] = useState(null)
     useEffect(() => {
         fetch('appointmentOptions.json')
             .then(res => res.json())
@@ -17,10 +18,17 @@ const AppointmentTypes = ({ selectDate }) => {
                 {
                     optionArray.map(option => <AppointmentOptions key={option._id}
                         option={option}
+                        setTreatment={setTreatment}
                     ></AppointmentOptions>)
                 }
             </div>
-            <BookModal></BookModal>
+            { treatment &&
+                <BookModal  
+                treatment={treatment}
+                selectDate={selectDate}
+                setTreatment={setTreatment}
+                ></BookModal>
+            }
         </section>
     );
 };
