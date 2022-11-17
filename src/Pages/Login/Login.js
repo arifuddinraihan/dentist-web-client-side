@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useTitle from '../../Hook/useTitle';
 
 const Login = () => {
+    useTitle("Login")
     const { register, handleSubmit } = useForm()
     const [data, setData] = useState("");
-
+    const handleLogin = data => {
+        console.log(data)
+    }
     return (
         <div className='min-h-screen flex justify-center items-center'>
             <div className='w-96 mx-auto flex flex-col justify-center'>
                 <h2 className='font-bold text-2xl text-center'>Login</h2>
                 <form
-                    onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
+                    onSubmit={handleSubmit(handleLogin)}
                     className="my-8 flex flex-col gap-3">
                     <div className='form-control my-1'>
                         <label className="label">
@@ -24,7 +28,7 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text font-semibold text-sm">Password</span>
                         </label>
-                        <input type="text" {...register("password")} placeholder="********"
+                        <input type="password" {...register("password")} placeholder="********"
                             className="input input-bordered w-full" />
                         <label className="label">
                             <span className="label-text font-semibold text-xs">Forget Password</span>
