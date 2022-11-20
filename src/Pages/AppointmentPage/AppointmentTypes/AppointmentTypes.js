@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import AppointmentOptions from './AppointmentOptions';
 import BookModal from '../BookModal/BookModal';
+import { useQuery } from '@tanstack/react-query';
 
 const AppointmentTypes = ({ selectDate }) => {
-    const [optionArray, setOptionArray] = useState([])
     const [treatment, setTreatment] = useState(null)
-    useEffect(() => {
-        fetch('http://localhost:5000/appointmentOptions')
-            .then(res => res.json())
-            .then(data => setOptionArray(data))
-    }, [])
+    const date = format(selectDate , 'PP');
+    const { data: optionArray = [], refetch } = useQuery({
+        queryKey: ['appointmentOptions' , date],
+        queryFn: async() => {
+            const res = await fetch(`http://localhost:5000/appointmentOptions?date=${date}`);
+            const data = await res.json();
+            return data;
+        }
+    })
+ 
     return (
         <section className='grid grid-cols-1 text-center my-56 mx-auto'>
             <h2 className='text-2xl text-secondary'>Available Appointments on {format(selectDate, 'PP')}</h2>
@@ -22,11 +27,12 @@ const AppointmentTypes = ({ selectDate }) => {
                     ></AppointmentOptions>)
                 }
             </div>
-            { treatment &&
-                <BookModal  
-                treatment={treatment}
-                selectDate={selectDate}
-                setTreatment={setTreatment}
+            {treatment &&
+                <BookModal
+                    treatment={treatment}
+                    selectDate={selectDate}
+                    setTreatment={setTreatment}
+                    refetch={refetch}
                 ></BookModal>
             }
         </section>
