@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TbDental } from "react-icons/tb";
 import { Link, NavLink } from 'react-router-dom';
- 
+import { AuthContext } from '../../../context/AuthProvider';
+
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+    }
+    
     const navMenu = <React.Fragment>
-    <NavLink to={'/'} className={({isActive}) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost" } >Home</NavLink>
-    <NavLink to={'/about'} className={({isActive}) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost" } >About</NavLink>
-    <NavLink to={'/appointment'} className={({isActive}) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost" } >Appointment</NavLink>
-    <NavLink to={'/reviews'} className={({isActive}) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost" } >Reviews</NavLink>
-    <NavLink to={'/contact-us'} className={({isActive}) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost" } >Contact Us</NavLink>
-    <NavLink to={'/login'} className={({isActive}) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost" } >Login</NavLink>
+        <NavLink to={'/'} className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Home</NavLink>
+        <NavLink to={'/about'} className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >About</NavLink>
+        <NavLink to={'/appointment'} className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Appointment</NavLink>
+        <NavLink to={'/contact-us'} className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Contact Us</NavLink>
+        {
+            user
+                ?
+                <>
+                    <NavLink to={'/reviews'} className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Reviews</NavLink>
+                    <NavLink 
+                        onClick={handleLogout}
+                    className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Logout</NavLink>
+                </>
+                :
+                <>
+                    <NavLink to={'/login'} className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Login</NavLink>
+                </>
+        }
     </React.Fragment>
 
     return (
