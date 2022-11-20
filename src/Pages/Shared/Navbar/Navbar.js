@@ -23,7 +23,7 @@ const Navbar = () => {
                     <NavLink to={'/reviews'} className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Reviews</NavLink>
                     <NavLink 
                         onClick={handleLogout}
-                    className={({ isActive }) => isActive ? "btn btn-outline ml-2" : "ml-2 btn btn-ghost"} >Logout</NavLink>
+                    className={({ isActive }) => isActive ? "btn btn-ghost ml-2" : "ml-2 btn btn-ghost"} >Logout</NavLink>
                 </>
                 :
                 <>

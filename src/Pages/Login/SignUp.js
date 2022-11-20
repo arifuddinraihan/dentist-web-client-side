@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useTitle from '../../Hook/useTitle';
 
@@ -8,9 +9,9 @@ const SignUp = () => {
     useTitle("Sign Up")
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     // console.log(imageHostKey)
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [data, setData] = useState("");
-    const { createUser, updateUser, loading } = useContext(AuthContext);
+    const { createUser, updateUser, logOut } = useContext(AuthContext);
     const handleSignUp = data => {
         const image = data.image[0];
         const formData = new FormData();
@@ -28,12 +29,6 @@ const SignUp = () => {
                     const email = data?.email;
                     const password = data?.password;
                     const imageURL = imageData.data.url;
-                    const user = {
-                        name,
-                        email,
-                        password,
-                        imageURL
-                    }
                     createUser(email, password)
                         .then(result => {
                             const displayName = data.name;
@@ -47,7 +42,8 @@ const SignUp = () => {
                                 .catch(err => console.error(err))
                             const user = result.user;
                             console.log(user)
-
+                            toast.success("Account created successfully!")
+                            reset()
                         })
                         .catch(err => console.error(err))
                 }
