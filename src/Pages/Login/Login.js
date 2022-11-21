@@ -8,8 +8,7 @@ import useTitle from '../../Hook/useTitle';
 const Login = () => {
     useTitle("Login");
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const [data, setData] = useState("");
-    const { user, signIn, passwordReset } = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
 
     const [loginError, setLoginError] = useState('');
 
@@ -17,13 +16,14 @@ const Login = () => {
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
+
     const handleLogin = data => {
+        setLoginError('')
         signIn(data.email, data.password)
             .then(result => {
-                setLoginError('')
                 toast.success("Logged in Successfully!");
                 reset();
-                navigate(from, { replace: true })
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 toast.error(`${error.message}`)

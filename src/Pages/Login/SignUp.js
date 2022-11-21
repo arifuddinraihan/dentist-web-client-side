@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useTitle from '../../Hook/useTitle';
 
@@ -10,18 +10,14 @@ const SignUp = () => {
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     // console.log(imageHostKey)
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
-    const [data, setData] = useState("");
-    const { createUser, updateUser, logOut } = useContext(AuthContext);
-
-    const location = useLocation();
+    const { createUser, updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
-    const from = '/'
 
     const handleSignUp = data => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
         fetch(url, {
             method: "POST",
             body: formData
@@ -49,7 +45,7 @@ const SignUp = () => {
                             console.log(user)
                             toast.success("Account created successfully!")
                             reset()
-                            navigate(from , {replace : true})
+                            navigate('/')
                         })
                         .catch(err => console.error(err))
                 }

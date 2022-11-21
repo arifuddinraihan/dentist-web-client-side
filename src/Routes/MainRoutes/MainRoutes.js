@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import AppointmentMain from "../../Pages/AppointmentPage/AppointmentMain/AppointmentMain";
-import MainDashPage from "../../Pages/Dashboard/MainDashPage";
+import MyAppointment from "../../Pages/Dashboard/MyAppointments/MyAppointment";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from '../../Pages/Home/Home/Home'
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/Login/SignUp";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SecretRoute from "../SecretRoute/SecretRoute";
 
 const routes = createBrowserRouter([
     {
@@ -21,7 +21,7 @@ const routes = createBrowserRouter([
             },
             {
                 path : '/appointment',
-                element : <AppointmentMain></AppointmentMain>
+                element: <AppointmentMain></AppointmentMain>
             },
             {
                 path : '/login',
@@ -34,14 +34,17 @@ const routes = createBrowserRouter([
         ]
     },
     {
-        path : "/dashboard",
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        errorElement : <ErrorPage></ErrorPage>,
-        children : [
+        path: '/dashboard',
+        element: <SecretRoute><DashboardLayout></DashboardLayout></SecretRoute>,
+        children: [
             {
-                path : '/dashboard',
-                element: <PrivateRoute><MainDashPage></MainDashPage></PrivateRoute>
-            }
+                path: '/dashboard',
+                element: <MyAppointment></MyAppointment>
+            },
+            // {
+            //     path: '/dashboard/allusers',
+            //     element: 
+            // },
         ]
     }
 ])

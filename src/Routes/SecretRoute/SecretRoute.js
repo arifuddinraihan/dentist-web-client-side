@@ -3,16 +3,16 @@ import { Navigate, useLocation } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
 import { AuthContext } from '../../context/AuthProvider';
 
-const PrivateRoute = ({ children }) => {
+const SecretRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
     if (loading) {
         return <Spinner></Spinner>
     }
-    if (user) {
-        return children;
+    if (user === null) {
+        <Navigate to={'/'} state={{ from: location }} replace></Navigate>
     }
-    return <Navigate to={'/login'} state={{ from: location }}></Navigate>
+    return children
 };
 
-export default PrivateRoute;
+export default SecretRoute;

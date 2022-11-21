@@ -24,10 +24,10 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, userInfo);
     }
 
-    const passwordReset = email => {
-        setLoading(true);
-        return sendPasswordResetEmail(auth, email)
-    }
+    // const passwordReset = email => {
+    //     setLoading(true);
+    //     return sendPasswordResetEmail(auth, email)
+    // }
 
     const logOut = () => {
         setLoading(true);
@@ -42,7 +42,7 @@ const AuthProvider = ({ children }) => {
         });
 
         return () => unsubscribe();
-    }, [])
+    }, []);
 
     const authValue = {
         user,
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         updateUser,
-        passwordReset,
+        // passwordReset,
         logOut
     }
     return (
